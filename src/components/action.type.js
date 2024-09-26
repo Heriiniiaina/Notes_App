@@ -1,0 +1,6 @@
+const ADD_NOTE = "ADD_NOTE"
+const REMOVE_NOTE = "REMOVE_NOTE"
+export{
+    ADD_NOTE,
+    REMOVE_NOTE
+}

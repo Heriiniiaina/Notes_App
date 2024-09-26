@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React,{useReducer} from "react";
+import Form from "./components/Form";
+import context from "./components/context/context";
+import "./style/styles.css"
+import reducer from "./components/reducer";
+import Display from "./components/Display";
 function App() {
+  const [todos,dispatch] = useReducer(reducer,[])
+  console.log(useReducer)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <context.Provider value={{todos,dispatch}}>
+      <>
+    <h1 className="text-3xl font-bold underline text-center">Notes App</h1>
+    <Form/>
+    <Display/>
+    </>
+    </context.Provider>
+      
+   
   );
 }
 
