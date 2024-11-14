@@ -6,7 +6,7 @@ type Props = {
 }
 
 const ButtonPrimary = ({children,onClick}:Props) => {
-  return <button onClick={onClick} className='bg-blue-600 text-white rounded-[50px] font-bold w-44 h-12'>{children}</button>
+  return <button type='button' onClick={onClick} className='bg-blue-600 text-white rounded-[50px] font-bold w-44 h-12'>{children}</button>
 
   
 }

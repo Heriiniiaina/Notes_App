@@ -1,46 +1,58 @@
 {
-    "notes": [
-      {
-        "title": "React - Props",
-        "content": "Props are data I can send to a component. You can send any kind of data : Objects, strings, numbers, arrays, jsx...\nYou can never modify a props directly they are read-only. Any time a component props changes the component re-render.\n\nExample : \n\n<Component myProps=\"This is a props\" />",
-        "created_at": "23/08/2022",
-        "id": 2
-      },
-      {
-        "title": "React - States",
-        "content": "A state is a data managed by a component. Any time a component state changes the component re-render",
-        "created_at": "23/08/2022",
-        "id": 5
-      },
-      {
-        "title": "React - Hooks",
-        "content": "Hooks are function that let you use states and other React features. \n\nuseEffect() and useState() are two famous React hooks. ",
-        "created_at": "23/08/2022",
-        "id": 6
-      },
-      {
-        "title": "React - useEffect() ",
-        "content": "The function passed to useEffect will run after the first render is committed to the screen.\nYou can pass an array as second parameter. useEffect() will run anytime a value in this array change.\nYou can return a function in useEffect() that will be executed when the component is removed from the DOM\n\nExample\n\nuseEffect( () => {\n   console.log(\"Run on first render\")\n}, [])\n\nuseEffect( () => {\n   console.log(\"Run on first render and when valueToListen changes\")\n}, [valueToListen])\n\nuseEffect( () => {\n   console.log(\"Run on first render\")\n   return () =>{\n        console.log(\"Run when component is removed from the DOM\")\n    }\n}, [])",
-        "created_at": "23/08/2022",
-        "id": 8
-      },
-      {
-        "title": "React - useState()",
-        "content": "useState is a React hooks that gives access to a value and a setter.\nAny time the setter is called the value is updated and the component re-render.\nYou can pass a default value to useState.\n\nExample :\n\nconst [value,setValue] = useState(\"defaultValue\")",
-        "created_at": "23/08/2022",
-        "id": 9
-      },
-      {
-        "title": "Javascript - Destructuring",
-        "content": "The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables. \n\nExample :\n\nlet a, b, rest;\n[a, b] = [10, 20];\n\nconsole.log(a);\n// expected output: 10\n\nconsole.log(b);\n// expected output: 20\n\n[a, b, ...rest] = [10, 20, 30, 40, 50];\n\nconsole.log(rest);\n// expected output: Array [30,40,50]\n",
-        "created_at": "13/10/2022",
-        "id": 10
-      },
-      {
-        "title": "Javascript - map()",
-        "content": "The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.\n\nExample : \n\nconst array1 = [1, 4, 9, 16];\n\n// pass a function to map\nconst map1 = array1.map(x => x * 2);\n\nconsole.log(map1);\n// expected output: Array [2, 8, 18, 32]",
-        "created_at": "13/10/2022",
-        "id": 11
-      }
-    ]
-  }
+  "notes": [
+    {
+      "title": "React - Props",
+      "content": "Props are data I can send to a component. You can send any kind of data : Objects, strings, numbers, arrays, jsx...\nYou can never modify a props directly they are read-only. Any time a component props changes the component re-render.\n\nExample : \n\n<Component myProps=\"This is a props\" />",
+      "created_at": "23/08/2022",
+      "id": "2"
+    },
+    {
+      "title": "React - States",
+      "content": "A state is a data managed by a component. Any time a component state changes the component re-render",
+      "created_at": "23/08/2022",
+      "id": "5"
+    },
+    {
+      "title": "React - Hooks",
+      "content": "Hooks are function that let you use states and other React features. \n\nuseEffect() and useState() are two famous React hooks. ",
+      "created_at": "23/08/2022",
+      "id": "6"
+    },
+    {
+      "title": "React - useEffect() ",
+      "content": "The function passed to useEffect will run after the first render is committed to the screen.\nYou can pass an array as second parameter. useEffect() will run anytime a value in this array change.\nYou can return a function in useEffect() that will be executed when the component is removed from the DOM\n\nExample\n\nuseEffect( () => {\n   console.log(\"Run on first render\")\n}, [])\n\nuseEffect( () => {\n   console.log(\"Run on first render and when valueToListen changes\")\n}, [valueToListen])\n\nuseEffect( () => {\n   console.log(\"Run on first render\")\n   return () =>{\n        console.log(\"Run when component is removed from the DOM\")\n    }\n}, [])",
+      "created_at": "23/08/2022",
+      "id": "8"
+    },
+    {
+      "title": "React - useState()",
+      "content": "useState is a React hooks that gives access to a value and a setter.\nAny time the setter is called the value is updated and the component re-render.\nYou can pass a default value to useState.\n\nExample :\n\nconst [value,setValue] = useState(\"defaultValue\")",
+      "created_at": "23/08/2022",
+      "id": "9"
+    },
+    {
+      "title": "Javascript - Destructuring",
+      "content": "The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables. \n\nExample :\n\nlet a, b, rest;\n[a, b] = [10, 20];\n\nconsole.log(a);\n// expected output: 10\n\nconsole.log(b);\n// expected output: 20\n\n[a, b, ...rest] = [10, 20, 30, 40, 50];\n\nconsole.log(rest);\n// expected output: Array [30,40,50]\n",
+      "created_at": "13/10/2022",
+      "id": "10"
+    },
+    {
+      "title": "Javascript - map()",
+      "content": "The map() method creates a new array populated with the results of calling a provided function on every element in the calling array.\n\nExample : \n\nconst array1 = [1, 4, 9, 16];\n\n// pass a function to map\nconst map1 = array1.map(x => x * 2);\n\nconsole.log(map1);\n// expected output: Array [2, 8, 18, 32]",
+      "created_at": "13/10/2022",
+      "id": "11"
+    },
+    {
+      "id": "c2b2",
+      "title": "adadad",
+      "content": "012312",
+      "created_at": "14/11/2024"
+    },
+    {
+      "id": "50a3",
+      "title": "super",
+      "content": "maga",
+      "created_at": "14/11/2024"
+    }
+  ]
+}
