@@ -39,7 +39,7 @@ const NoteForm = ({ title }: FormProps) => {
         <div className='flex flex-col p-10 bg-white gap-y-4 rounded-3xl '>
             <div className='flex justify-between w-11/12'>
                 <div>
-                    <h2 className='m-b-2 font-bold text-2xl'>
+                    <h2 className='m-b-2 font-bold text-3xl'>
                         {title}
                     </h2>
                 </div>
