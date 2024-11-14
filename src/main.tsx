@@ -9,7 +9,7 @@ import NoteBrowse from './pages/NoteBrowse/NoteBrowse.tsx'
 import PageNotFound from './pages/PageNotFound/PageNotFound.tsx'
 import Note from './pages/Notes/Note.tsx'
 import NoteCreate from './pages/NoteCreate/NoteCreate.tsx'
-import "./out.css"
+
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <BrowserRouter>
