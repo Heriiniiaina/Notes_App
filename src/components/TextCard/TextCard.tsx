@@ -17,7 +17,7 @@ const TextCard = ({ title, subtitle, content, onClickTrash, onClick }: Props) =>
     return (
         <div onClick={onClick} 
             
-            className="relative flex cursor-pointer w-[200px]  h-[200px] flex-col rounded-md border p-6 border-gray-200 bg-white  hover:border-gray-400 sm:rounded-lg sm:p-5 shadow-sm shadow-slate-800">
+            className="relative flex cursor-pointer w-[300px]  h-[300px] flex-col rounded-md border p-6 border-gray-200 bg-white  hover:border-gray-400 sm:rounded-lg sm:p-5 shadow-sm shadow-slate-800">
             <div className='flex items-center justify-between'>
                 <span className="text-md mb-0 font-semibold text-gray-900 hover:text-black sm:mb-1.5 sm:text-xl">
                     {title}

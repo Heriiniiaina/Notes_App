@@ -1,10 +1,11 @@
 import React from 'react'
+import NoteForm from '../../components/NoteForm/NoteForm'
 
 
 
 const NoteCreate = () => {
   return (
-    <div>NoteCreate</div>
+    <NoteForm title='Create a note'/>
   )
 }
 
