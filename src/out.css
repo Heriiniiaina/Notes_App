@@ -596,18 +596,6 @@ video {
   position: relative;
 }
 
-.m-5 {
-  margin: 1.25rem;
-}
-
-.m-0 {
-  margin: 0px;
-}
-
-.m-3 {
-  margin: 0.75rem;
-}
-
 .m-4 {
   margin: 1rem;
 }
@@ -628,36 +616,72 @@ video {
   height: 3rem;
 }
 
-.h-\[200px\] {
-  height: 200px;
-}
-
 .h-\[300px\] {
   height: 300px;
+}
+
+.h-screen {
+  height: 100vh;
 }
 
 .w-44 {
   width: 11rem;
 }
 
-.w-\[200px\] {
-  width: 200px;
+.w-\[300px\] {
+  width: 300px;
 }
 
 .w-full {
   width: 100%;
 }
 
-.w-\[250px\] {
-  width: 250px;
+.w-12 {
+  width: 3rem;
 }
 
-.w-\[300px\] {
-  width: 300px;
+.w-1\/12 {
+  width: 8.333333%;
+}
+
+.w-1\/6 {
+  width: 16.666667%;
+}
+
+.w-4\/6 {
+  width: 66.666667%;
+}
+
+.w-10\/12 {
+  width: 83.333333%;
+}
+
+.w-5\/6 {
+  width: 83.333333%;
+}
+
+.w-11\/12 {
+  width: 91.666667%;
+}
+
+.w-1\/2 {
+  width: 50%;
 }
 
 .max-w-full {
   max-width: 100%;
+}
+
+.max-w-\[300px\] {
+  max-width: 300px;
+}
+
+.max-w-\[400px\] {
+  max-width: 400px;
+}
+
+.max-w-\[600px\] {
+  max-width: 600px;
 }
 
 .cursor-pointer {
@@ -688,6 +712,22 @@ video {
   justify-content: space-between;
 }
 
+.justify-around {
+  justify-content: space-around;
+}
+
+.gap-y-4 {
+  row-gap: 1rem;
+}
+
+.rounded {
+  border-radius: 0.25rem;
+}
+
+.rounded-3xl {
+  border-radius: 1.5rem;
+}
+
 .rounded-\[50px\] {
   border-radius: 50px;
 }
@@ -700,6 +740,10 @@ video {
   border-width: 1px;
 }
 
+.border-2 {
+  border-width: 2px;
+}
+
 .border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
@@ -710,9 +754,18 @@ video {
   background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
 
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.p-10 {
+  padding: 2.5rem;
 }
 
 .p-6 {
@@ -723,6 +776,14 @@ video {
   padding: 2rem;
 }
 
+.p-\[50px\] {
+  padding: 50px;
+}
+
+.text-right {
+  text-align: right;
+}
+
 .text-end {
   text-align: end;
 }
@@ -730,6 +791,16 @@ video {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-bold {
