@@ -24,15 +24,16 @@ cd Nots_App
 ```
 
 3. Run the Application
-Start the backend
+
+  - Start the backend
 
 ```bash
    json-server --watch db.json --port 3000
 ```
-Start the frontend
+  - Start the frontend
 
 ```bash
   npm run dev 
 ```
-Access the app at http://localhost:5173.
+  Access the app at http://localhost:5173.
 
