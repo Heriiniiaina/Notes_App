@@ -23,7 +23,7 @@ const Validator ={
 
 const NoteForm = ({ title,onClickEdit,onClickTrash,onSubmit }: FormProps) => {
     const [formValue,setFormValue] = useState({title:"",content:""})
-    const [formError,setFormError] = useState({title:undefined,content:undefined})
+    const [formError,setFormError] = useState({title:"",content:""})
     const [hasFormError,setHasFormError] = useState(true)
     const updateFormValue = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
         setFormValue({...formValue,[e.target.name]:e.target.value})
