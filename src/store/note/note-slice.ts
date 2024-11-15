@@ -25,6 +25,10 @@ export const noteSlice = createSlice({
         },
         addNote:(currentSlice,action)=>{
             currentSlice.noteList.push(action.payload)
+        },
+        updateNote:(currentSlice,action)=>{
+            const index = currentSlice.noteList.findIndex((note)=>note.id === action.payload.id)
+            currentSlice.noteList[index] = action.payload
         }
     }
 })
