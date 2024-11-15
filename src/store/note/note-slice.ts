@@ -33,4 +33,4 @@ export const noteSlice = createSlice({
     }
 })
 export const noteReducer = noteSlice.reducer
-export const {setNoteList,addNote} = noteSlice.actions
+export const {setNoteList,addNote,updateNote} = noteSlice.actions
