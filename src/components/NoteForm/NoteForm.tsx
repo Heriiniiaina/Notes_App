@@ -31,8 +31,8 @@ const Validator ={
 }
 
 const NoteForm = ({isEditable=true, title,onClickEdit,onClickTrash,onSubmit,note }: FormProps) => {
-    const [formValue,setFormValue] = useState({title:"",content:""})
-    const [formError,setFormError] = useState({title:"",content:""})
+    const [formValue,setFormValue] = useState({title:note? note.title : "",content:note? note.content : ""})
+    const [formError,setFormError] = useState({title: note?.title ? undefined : "",content: note?.content ? undefined : ""})
     const [hasFormError,setHasFormError] = useState(true)
     const updateFormValue = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
         setFormValue({...formValue,[e.target.name]:e.target.value})
@@ -60,14 +60,14 @@ const NoteForm = ({isEditable=true, title,onClickEdit,onClickTrash,onSubmit,note
     const titleInput = (
         <div className='flex flex-col relative mb-8 gap-y-3'>
             <label htmlFor="">Title</label>
-            <input onChange={updateFormValue} type="text" name='title' className='border-2 rounded max-w-[300px]' />
+            <input onChange={updateFormValue} type="text" name='title' value={formValue.title} className='border-2 rounded max-w-[300px]' />
             <FieldError msg={formError.title}/>
         </div>
     )
     const contentInput = (
         <div className='flex flex-col relative mb-8 gap-y-3'>
             <label htmlFor="">Content</label>
-            <textarea onChange={updateFormValue} name='content' rows={5} className="border-2 rounded " />
+            <textarea onChange={updateFormValue} name='content' value={formValue.content} rows={5} className="border-2 rounded " />
             <FieldError msg={formError.content}/>
         </div>
     )

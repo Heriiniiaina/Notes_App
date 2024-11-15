@@ -10,11 +10,11 @@ const Note = () => {
   const [isEditable,setISEditable] = useState(false)
   const {id} = useParams()
   const note = useSelector((store:RootState)=>store.NOTE.noteList.find(note=>note.id === id))
-  
+  function submit(){}
   console.log(note)
   return (
     <>
-        {note && <NoteForm note={note} isEditable={isEditable} title={isEditable ? "Edit note" : note.title} onClickEdit={()=>setISEditable(!isEditable)} onClickTrash={()=>""}/>}
+        {note && <NoteForm note={note} isEditable={isEditable} title={isEditable ? "Edit note" : note.title} onClickEdit={()=>setISEditable(!isEditable)} onClickTrash={()=>""} onSubmit={isEditable  ?  submit : undefined}/>}
     </>
   )
 }
