@@ -1,6 +1,7 @@
 import React, { MouseEventHandler, useState } from 'react'
 import { FaPencil, FaTrash } from 'react-icons/fa6'
 import ButtonPrimary from '../ButtonPrimary/ButtonPrimary'
+import { Validators } from '../../services/form-validator';
 
 interface FormProps {
     title: string,
@@ -9,14 +10,27 @@ interface FormProps {
     onSubmit?:(formValue: { title: string; content: string }) => void 
 }
 
+const Validator ={
+    title:(value:string)=>{
+        return Validators.min(value,3) || Validators.max(value,20)
+
+    },
+    content:(value:string)=>{
+        return Validators.min(value,4)
+    }
+}
 
 const NoteForm = ({ title,onClickEdit,onClickTrash,onSubmit }: FormProps) => {
     const [formValue,setFormValue] = useState({title:"",content:""})
+    const [formError,setFormError] = useState({title:undefined,content:undefined})
     const updateFormValue = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
         setFormValue({...formValue,[e.target.name]:e.target.value})
+        validate(e.target.name as keyof typeof Validator,e.target.value)
     }
-    console.log(formValue);
-    
+    const validate = (name:keyof typeof Validator,value:string)=>{
+        setFormError({...formError,[name]:Validator[name](value)})
+    }
+    console.log(formError)
     const actionIcone = (
         <div className='w-1/12 flex'>
             <div className='cursor-pointer w-1/2'>
@@ -45,7 +59,7 @@ const NoteForm = ({ title,onClickEdit,onClickTrash,onSubmit }: FormProps) => {
         </div>
     )
     return (
-        <form className='flex flex-col p-10 bg-white gap-y-4 rounded-3xl '>
+        <div className='flex flex-col p-10 bg-white gap-y-4 rounded-3xl '>
             <div className='flex justify-between w-11/12'>
                 <div>
                     <h2 className='m-b-2 font-bold text-2xl'>
@@ -58,7 +72,7 @@ const NoteForm = ({ title,onClickEdit,onClickTrash,onSubmit }: FormProps) => {
             {titleInput}
             {contentInput}
             {onSubmit && submitButton}
-        </form>
+        </div>
     )
 }
 
