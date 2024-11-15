@@ -10,7 +10,7 @@ const Note = () => {
   const [isEditable,setISEditable] = useState(false)
   const {id} = useParams()
   const note = useSelector((store:RootState)=>store.NOTE.noteList.find(note=>note.id === id))
-  function submit(){}
+  async function submit(formValue){}
   console.log(note)
   return (
     <>
