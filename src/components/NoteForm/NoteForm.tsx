@@ -4,12 +4,20 @@ import ButtonPrimary from '../ButtonPrimary/ButtonPrimary'
 import { Validators } from '../../services/form-validator';
 import FieldError from '../FiealdError/FieldError';
 
+interface Note {
+    id:string,
+    title:string,
+    content:string,
+    created_at:string
+}
+
 interface FormProps {
     title: string,
     onClickEdit?: React.MouseEventHandler<SVGElement>,
     onClickTrash?:React.MouseEventHandler<SVGElement>,
     onSubmit?:(formValue: { title: string; content: string }) => void,
-    isEditable:boolean
+    isEditable:boolean,
+    note?:Note
 }
 
 const Validator ={
@@ -22,7 +30,7 @@ const Validator ={
     }
 }
 
-const NoteForm = ({isEditable=true, title,onClickEdit,onClickTrash,onSubmit }: FormProps) => {
+const NoteForm = ({isEditable=true, title,onClickEdit,onClickTrash,onSubmit,note }: FormProps) => {
     const [formValue,setFormValue] = useState({title:"",content:""})
     const [formError,setFormError] = useState({title:"",content:""})
     const [hasFormError,setHasFormError] = useState(true)
@@ -79,8 +87,8 @@ const NoteForm = ({isEditable=true, title,onClickEdit,onClickTrash,onSubmit }: F
 
                 {actionIcone}
             </div>
-            {titleInput}
-            {contentInput}
+            {isEditable && titleInput}
+            {isEditable ? contentInput : <pre>{note?.content}</pre> }
             {onSubmit && submitButton}
         </div>
     )

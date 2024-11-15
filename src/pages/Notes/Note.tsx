@@ -12,7 +12,7 @@ const Note = () => {
   console.log(note)
   return (
     <>
-        {note && <NoteForm title={note.title} onClickEdit={()=>""} onClickTrash={()=>""}/>}
+        {note && <NoteForm note={note} isEditable={false} title={note.title} onClickEdit={()=>""} onClickTrash={()=>""}/>}
     </>
   )
 }
