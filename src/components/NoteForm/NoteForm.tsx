@@ -2,6 +2,7 @@ import React, { MouseEventHandler, useState } from 'react'
 import { FaPencil, FaTrash } from 'react-icons/fa6'
 import ButtonPrimary from '../ButtonPrimary/ButtonPrimary'
 import { Validators } from '../../services/form-validator';
+import FieldError from '../FiealdError/FieldError';
 
 interface FormProps {
     title: string,
@@ -42,16 +43,18 @@ const NoteForm = ({ title,onClickEdit,onClickTrash,onSubmit }: FormProps) => {
         </div>
     )
     const titleInput = (
-        <>
+        <div className='flex flex-col relative'>
             <label htmlFor="">Title</label>
             <input onChange={updateFormValue} type="text" name='title' className='border-2 rounded max-w-[300px]' />
-        </>
+            <FieldError msg={formError.title}/>
+        </div>
     )
     const contentInput = (
-        <>
+        <div className='flex flex-col relative '>
             <label htmlFor="">Content</label>
             <textarea onChange={updateFormValue} name='content' rows={5} className="border-2 rounded " />
-        </>
+            <FieldError msg={formError.content}/>
+        </div>
     )
     const submitButton = (
         <div className='text-right'>
