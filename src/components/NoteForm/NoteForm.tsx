@@ -43,14 +43,14 @@ const NoteForm = ({ title,onClickEdit,onClickTrash,onSubmit }: FormProps) => {
         </div>
     )
     const titleInput = (
-        <div className='flex flex-col relative'>
+        <div className='flex flex-col relative mb-8 gap-y-3'>
             <label htmlFor="">Title</label>
             <input onChange={updateFormValue} type="text" name='title' className='border-2 rounded max-w-[300px]' />
             <FieldError msg={formError.title}/>
         </div>
     )
     const contentInput = (
-        <div className='flex flex-col relative'>
+        <div className='flex flex-col relative mb-8 gap-y-3'>
             <label htmlFor="">Content</label>
             <textarea onChange={updateFormValue} name='content' rows={5} className="border-2 rounded " />
             <FieldError msg={formError.content}/>
