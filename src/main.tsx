@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path='/' element={<App />}>
           <Route path='/' element={<NoteBrowse />} />
-          <Route path='/note//id' element={<Note />} />
+          <Route path='/note/:id' element={<Note />} />
           <Route path='/note/new' element={<NoteCreate />} />
         </Route>
           <Route path='*' element={<PageNotFound />} />

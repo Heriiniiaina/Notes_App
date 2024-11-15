@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface Note {
-    id:number,
+    id:string,
     title:string,
     content:string,
     created_at:string

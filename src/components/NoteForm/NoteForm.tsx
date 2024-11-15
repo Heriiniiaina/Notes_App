@@ -8,7 +8,8 @@ interface FormProps {
     title: string,
     onClickEdit?: React.MouseEventHandler<SVGElement>,
     onClickTrash?:React.MouseEventHandler<SVGElement>,
-    onSubmit?:(formValue: { title: string; content: string }) => void 
+    onSubmit?:(formValue: { title: string; content: string }) => void,
+    isEditable:boolean
 }
 
 const Validator ={
@@ -21,7 +22,7 @@ const Validator ={
     }
 }
 
-const NoteForm = ({ title,onClickEdit,onClickTrash,onSubmit }: FormProps) => {
+const NoteForm = ({isEditable=true, title,onClickEdit,onClickTrash,onSubmit }: FormProps) => {
     const [formValue,setFormValue] = useState({title:"",content:""})
     const [formError,setFormError] = useState({title:"",content:""})
     const [hasFormError,setHasFormError] = useState(true)
