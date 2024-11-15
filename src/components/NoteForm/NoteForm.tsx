@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useState } from 'react'
+import React, { MouseEventHandler, useEffect, useState } from 'react'
 import { FaPencil, FaTrash } from 'react-icons/fa6'
 import ButtonPrimary from '../ButtonPrimary/ButtonPrimary'
 import { Validators } from '../../services/form-validator';
@@ -24,13 +24,19 @@ const Validator ={
 const NoteForm = ({ title,onClickEdit,onClickTrash,onSubmit }: FormProps) => {
     const [formValue,setFormValue] = useState({title:"",content:""})
     const [formError,setFormError] = useState({title:undefined,content:undefined})
+    const [hasFormError,setHasFormError] = useState(true)
     const updateFormValue = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
         setFormValue({...formValue,[e.target.name]:e.target.value})
         validate(e.target.name as keyof typeof Validator,e.target.value)
     }
+    
     const validate = (name:keyof typeof Validator,value:string)=>{
         setFormError({...formError,[name]:Validator[name](value)})
     }
+    
+    useEffect(()=>{
+        setHasFormError(Object.values(formError).some((err)=>err !== undefined))
+    },[formError])
     console.log(formError)
     const actionIcone = (
         <div className='w-1/12 flex'>
@@ -58,7 +64,7 @@ const NoteForm = ({ title,onClickEdit,onClickTrash,onSubmit }: FormProps) => {
     )
     const submitButton = (
         <div className='text-right'>
-            <ButtonPrimary onClick={()=>onSubmit && onSubmit(formValue)}>Submit</ButtonPrimary>
+            <ButtonPrimary isDisable={hasFormError} onClick={()=>onSubmit && onSubmit(formValue)}>Submit</ButtonPrimary>
         </div>
     )
     return (
