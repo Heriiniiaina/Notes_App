@@ -50,7 +50,7 @@ const NoteForm = ({ title,onClickEdit,onClickTrash,onSubmit }: FormProps) => {
         </div>
     )
     const contentInput = (
-        <div className='flex flex-col relative '>
+        <div className='flex flex-col relative'>
             <label htmlFor="">Content</label>
             <textarea onChange={updateFormValue} name='content' rows={5} className="border-2 rounded " />
             <FieldError msg={formError.content}/>

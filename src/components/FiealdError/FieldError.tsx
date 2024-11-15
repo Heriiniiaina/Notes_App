@@ -6,7 +6,7 @@ type Props = {
 
 const FieldError = ({msg}:Props) => {
   return (
-    <span className="text-red mb-" >{msg}</span>
+    <span className="text-red-500" >{msg}</span>
   )
 }
 
