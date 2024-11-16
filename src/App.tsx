@@ -16,7 +16,7 @@ function App() {
   },[])
 
   return (
-    <div className="max-w-full bg-gray-100 h-screen">
+    <div className="max-w-full bg-gray-100 ">
       <Header/>
       <div className="p-[50px]">
 
