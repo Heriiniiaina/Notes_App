@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { RootState } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
 import NoteForm from '../../components/NoteForm/NoteForm'
 import { NoteApi } from '../../api/note-api'
-import { updateNote } from '../../store/note/note-slice'
+import { deleteNote, updateNote } from '../../store/note/note-slice'
 
 interface FORMVALUE{
   
@@ -20,6 +20,7 @@ interface Note {
 }
 
 const Note = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [isEditable,setISEditable] = useState(false)
   const {id} = useParams()
@@ -30,10 +31,17 @@ const Note = () => {
       dispatch(updateNote(updatedNote))
       setISEditable(false)
   }
-  console.log(note)
+  const deleteSelectedNote = (note: Note) => {
+    if (window.confirm("Supprimer la note ?")) {
+      NoteApi.deleteById(note.id)
+      dispatch(deleteNote(note))
+      navigate("/")
+    }
+
+  }
   return (
     <>
-        {note && <NoteForm note={note} isEditable={isEditable} title={isEditable ? "Edit note" : note.title} onClickEdit={()=>setISEditable(!isEditable)} onClickTrash={()=>""} onSubmit={isEditable  ?  submit : undefined}/>}
+        {note && <NoteForm note={note} isEditable={isEditable} title={isEditable ? "Edit note" : note.title} onClickEdit={()=>setISEditable(!isEditable)} onClickTrash={()=>deleteSelectedNote(note)} onSubmit={isEditable  ?  submit : undefined}/>}
     </>
   )
 }
