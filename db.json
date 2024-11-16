@@ -1,7 +1,7 @@
 {
   "notes": [
     {
-      "title": "React - Props",
+      "title": "React ",
       "content": "Props are data I can send to a component. You can send any kind of data : Objects, strings, numbers, arrays, jsx...\nYou can never modify a props directly they are read-only. Any time a component props changes the component re-render.\n\nExample : \n\n<Component myProps=\"This is a props\" />",
       "created_at": "23/08/2022",
       "id": "2"

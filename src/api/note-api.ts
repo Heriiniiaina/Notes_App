@@ -34,6 +34,6 @@ export class NoteApi{
         return (await axios.delete(`${BASE_URL}/${noteId}`)).data
     }
     static async update(note:Notes){
-        return (await axios.post(`${BASE_URL}/${note.id}`,note)).data
+        return (await axios.patch(`${BASE_URL}/${note.id}`,note)).data
     }
 }

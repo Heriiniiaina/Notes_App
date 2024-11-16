@@ -15,7 +15,7 @@ interface FormProps {
     title: string,
     onClickEdit?: React.MouseEventHandler<SVGElement>,
     onClickTrash?:React.MouseEventHandler<SVGElement>,
-    onSubmit?:(formValue: { title: string; content: string }) => void,
+    onSubmit?: (formValue: { id?: string; title: string; content: string; created_at?: string }) => void
     isEditable:boolean,
     note?:Note
 }
