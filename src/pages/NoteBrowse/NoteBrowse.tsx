@@ -5,10 +5,11 @@ import SearchBar from '../SearchBar/SearchBar'
 
 
 
+
 const NoteBrowse = () => {
   return (
     <>
-      <SearchBar/>
+      <SearchBar placeholder='Search your note...'/>
       <NoteList />
     </>
        
