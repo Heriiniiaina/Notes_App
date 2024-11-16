@@ -11,15 +11,17 @@ interface Note {
   content: string,
   created_at: string
 }
+interface Props{
+  noteList:Note[]
+}
 
-
-const NoteList = () => {
+const NoteList = ({noteList}:Props) => {
   const dispatch = useDispatch()
   const naviagte = useNavigate()
 
-  const noteList = useSelector((store: RootState) => store.NOTE.noteList)
+  
   const deleteSelectedNote = (note: Note) => {
-    if(window.confirm("Supprimer la note ?")){
+    if (window.confirm("Supprimer la note ?")) {
       NoteApi.deleteById(note.id)
       dispatch(deleteNote(note))
 
