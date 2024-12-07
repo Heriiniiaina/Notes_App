@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 import {v4 as uuid} from "uuid"
-const Note = {
-    _id:uuid(),
+const Note = new mongoose.Schema({
+    
     title:{
-        type:string,
+        type:String,
         required:true
     },
     content:{
-        type:string,
+        type:String,
         required:true
     },
     createdAt:{
@@ -21,9 +21,7 @@ const Note = {
         default:Date.now()
     }
 
-
-
-}
+})
 const UserSchema = mongoose.Schema(
     {
         fullName:{
