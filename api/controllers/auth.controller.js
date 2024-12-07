@@ -31,3 +31,17 @@ export const register = async(req,res,next)=>{
         next(new ErrorHandler(error.message))
     }
 }
+
+export const login = async(req,res,next)=>{
+    const {email,password}=req.body
+    if(!email || !password)
+        return next(new ErrorHandler("Veuillez remplire le formulaire",400))
+    try {
+        const user = await User.findOne({email:email})
+        if(!user)
+            return next(new ErrorHandler("Aucun utilisateur avec cet email",404))
+        
+    } catch (error) {
+        
+    }
+}
