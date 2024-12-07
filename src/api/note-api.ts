@@ -27,10 +27,10 @@ export class NoteApi{
     static async fetchAll(){
         return (await axios.get(`${BASE_URL}`)).data
     }
-    static async fetchById(noteId:number){
+    static async fetchById(noteId:string){
         return (await axios.get(`${BASE_URL}/${noteId}`)).data
     }
-    static async deleteById(noteId:number){
+    static async deleteById(noteId:string){
         return (await axios.delete(`${BASE_URL}/${noteId}`)).data
     }
     static async update(note:Notes){
