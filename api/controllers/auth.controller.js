@@ -1,7 +1,8 @@
 import { ErrorHandler } from "../middlewares/errorHandler.js"
 import { registerSchema } from "../middlewares/validator.js"
 import { User } from "../models/user.model.js"
-import { hashPassword } from "../utils/bcrypt.js"
+import { comparePassword, hashPassword } from "../utils/bcrypt.js"
+import { generateToken } from "../utils/token.js"
 
 export const register = async(req,res,next)=>{
     const {fullName,email,password}= req.body
@@ -40,8 +41,17 @@ export const login = async(req,res,next)=>{
         const user = await User.findOne({email:email})
         if(!user)
             return next(new ErrorHandler("Aucun utilisateur avec cet email",404))
+        const isPass = await comparePassword(password,user.password)
+        if(!isPass)
+            return next(new ErrorHandler("Mot de passe incorrecte"))
+        const token = generateToken(user)
+        res.cookie("Authorization",token,{expires:Date.now()+ 8 * 3600000 ,secure:process.env.NODE_ENV=="production",httpOnly:process.env.NODE_ENV} ).json({
+            success:true,
+            message:"Connexion reussi",
+            token
         
+        })
     } catch (error) {
-        
+        next(new ErrorHandler(error.message))
     }
 }
