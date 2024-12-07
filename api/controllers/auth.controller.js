@@ -8,7 +8,9 @@ export const register = async(req,res,next)=>{
     if(!fullName || !email || !password)
         return next(new ErrorHandler("Veuillez remplir le formulaire",400))
     try {
-      
+        const {error} = registerSchema.validate({fullName,email,password})
+        if(error)
+            return next(new ErrorHandler(error.details[0].message))
         const isUserExist = await User.findOne({email:email})
         if(isUserExist)
             return next(new ErrorHandler("Email déja utilisé par un autre compte",400))
