@@ -1,8 +1,9 @@
-import {Router}from "express";
+import express from "express";
 import authRoute from "./auth.routes.js"
 const BASE_URl = "/memorise"
-const router = Router()
+const router = express.Router()
 
-router.use(`${BASE_URl}/auth`,authRoute)
+const baseUrl = "/api"
+router.use(`${baseUrl}/auth`,authRoute)
 
 export default router
