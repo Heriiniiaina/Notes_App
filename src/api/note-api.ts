@@ -1,6 +1,8 @@
 import axios from "axios"
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
-const BASE_URL = "http://localhost:3000/notes"
+const BASE_URL = "http://localhost:8000/api/note"
 interface Notes{
     id?:string
     title:string,
@@ -24,8 +26,9 @@ export class NoteApi{
             console.log(error)
         }
     }
-    static async fetchAll(){
-        return (await axios.get(`${BASE_URL}`)).data
+    static async fetchAll(userId:string){
+       
+        return (await axios.get(`${BASE_URL}/get-user-note/${userId}`)).data
     }
     static async fetchById(noteId:string){
         return (await axios.get(`${BASE_URL}/${noteId}`)).data

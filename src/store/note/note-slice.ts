@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface Note {
-    id:string,
+    _id:string,
     title:string,
     content:string,
     created_at:string
@@ -27,11 +27,11 @@ export const noteSlice = createSlice({
             currentSlice.noteList.push(action.payload)
         },
         updateNote:(currentSlice,action)=>{
-            const index = currentSlice.noteList.findIndex((note)=>note.id === action.payload.id)
+            const index = currentSlice.noteList.findIndex((note)=>note._id === action.payload._id)
             currentSlice.noteList[index] = action.payload
         },
         deleteNote:(currentSlice,action)=>{
-            const filteredNote = currentSlice.noteList.filter(note=>note.id !== action.payload.id)
+            const filteredNote = currentSlice.noteList.filter(note=>note._id !== action.payload._id)
             currentSlice.noteList = filteredNote
         }
     }

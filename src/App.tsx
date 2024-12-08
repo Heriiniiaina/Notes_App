@@ -1,15 +1,20 @@
 import { Outlet } from "react-router-dom"
 import Header from "./components/Header/Header"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { NoteApi } from "./api/note-api"
 import { setNoteList } from "./store/note/note-slice"
 import { useEffect } from "react"
+import { RootState } from "./store"
 
 function App() {
   const disptach = useDispatch()
+  const userId = useSelector((store:RootState)=>store.auth.user?.userId)
+  const id = userId ? userId : ""
   const fetchAll = async ()=>{
-    const noteList = await NoteApi.fetchAll()
-    disptach(setNoteList(noteList))
+    
+      const noteList = await NoteApi.fetchAll(id)
+      console.log(noteList)
+    disptach(setNoteList(noteList.notes))
   }
   useEffect(()=>{
     fetchAll()

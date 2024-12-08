@@ -49,7 +49,12 @@ export const login = async(req,res,next)=>{
         res.cookie("Authorization",token,{expires:new Date(Date.now() + 8 * 3600000),secure:process.env.NODE_ENV=="production",httpOnly:process.env.NODE_ENV} ).json({
             success:true,
             message:"Connexion reussi",
-            token
+            token,
+            user:{
+                fullName:user.fullName,
+                email:user.email,
+                userId:user._id
+            }
         
         })
     } catch (error) {

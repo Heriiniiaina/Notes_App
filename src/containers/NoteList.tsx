@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { NoteApi } from '../api/note-api'
 import { deleteNote } from '../store/note/note-slice'
 interface Note {
-  id: string,
+  _id: string,
   title: string,
   content: string,
   created_at: string
@@ -22,7 +22,7 @@ const NoteList = ({noteList}:Props) => {
   
   const deleteSelectedNote = (note: Note) => {
     if (window.confirm("Supprimer la note ?")) {
-      NoteApi.deleteById(note.id)
+      NoteApi.deleteById(note._id)
       dispatch(deleteNote(note))
 
     }
@@ -32,9 +32,9 @@ const NoteList = ({noteList}:Props) => {
     <div className='flex justify-center flex-row w-full flex-wrap'>
       {
         noteList.map((note) => {
-          return <div key={note.id} className='m-4 '>
+          return <div key={note._id} className='m-4 '>
             <TextCard title={note.title} subtitle={note.created_at} content={note.content}
-              onClick={() => naviagte("/note/" + note.id)} onClickTrash={() => deleteSelectedNote(note)} />
+              onClick={() => naviagte("/note/" + note._id)} onClickTrash={() => deleteSelectedNote(note)} />
           </div>
         })
       }

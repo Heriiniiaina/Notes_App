@@ -4,8 +4,15 @@ import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { login } from '../../store/note/auth-slice'
-
-type Props = {}
+interface User{
+    userId:string,
+    fullName:string,
+    email:string
+}
+interface Userdata{
+    user:User,
+    token:string
+} 
 const BASE_URL = "http://localhost:8000/api/auth"
 const Login = () => {
     const navigate = useNavigate()
@@ -17,7 +24,7 @@ const Login = () => {
         try {
             const res = await axios.post(`${BASE_URL}/login`,{email,password})
             toast.success(res.data.message)
-            const data = {user:res.data.user,token:res.data.token}
+            const data:Userdata = {user:res.data.user,token:res.data.token}
             dispatch(login(data))
             localStorage.setItem("user-token",data.token)
         } catch (error:any) {

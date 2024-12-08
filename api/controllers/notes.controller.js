@@ -30,7 +30,7 @@ export const addNewNote = async (req,res,next)=>{
 }
 
 export const getAllUSerNote = async (req,res,next)=>{
-    const {userId} = req.body
+    const userId = req.params.userId
     if(!userId)
         return next(new ErrorHandler("Autorisation error",403))
     try {
