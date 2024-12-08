@@ -9,15 +9,25 @@ import NoteBrowse from './pages/NoteBrowse/NoteBrowse.tsx'
 import PageNotFound from './pages/PageNotFound/PageNotFound.tsx'
 import Note from './pages/Notes/Note.tsx'
 import NoteCreate from './pages/NoteCreate/NoteCreate.tsx'
-
+import PublicRoute from './components/PublicRoute/PublicRoute.tsx'
+import "./output.css"
+import Login from './components/Login/Login.tsx'
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.tsx'
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <BrowserRouter>
+    
       <Routes>
+        <Route element={<PublicRoute/>}>
+            <Route path='/login' element={<Login/>}/>
+        </Route>
+        <Route  element={<ProtectedRoute/>}>
+
         <Route path='/' element={<App />}>
           <Route path='/' element={<NoteBrowse />} />
           <Route path='/note/:id' element={<Note />} />
           <Route path='/note/new' element={<NoteCreate />} />
+        </Route>
         </Route>
           <Route path='*' element={<PageNotFound />} />
       </Routes>
