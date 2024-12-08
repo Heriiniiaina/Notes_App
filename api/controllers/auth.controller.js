@@ -38,20 +38,22 @@ export const login = async(req,res,next)=>{
     if(!email || !password)
         return next(new ErrorHandler("Veuillez remplire le formulaire",400))
     try {
-        const user = await User.findOne({email:email})
+        const user = await User.findOne({email:email}).select("+password")
         if(!user)
             return next(new ErrorHandler("Aucun utilisateur avec cet email",404))
         const isPass = await comparePassword(password,user.password)
         if(!isPass)
             return next(new ErrorHandler("Mot de passe incorrecte"))
         const token = generateToken(user)
-        res.cookie("Authorization",token,{expires:Date.now()+ 8 * 3600000 ,secure:process.env.NODE_ENV=="production",httpOnly:process.env.NODE_ENV} ).json({
+        console.log("pkau")
+        res.cookie("Authorization",token,{expires:new Date(Date.now() + 8 * 3600000),secure:process.env.NODE_ENV=="production",httpOnly:process.env.NODE_ENV} ).json({
             success:true,
             message:"Connexion reussi",
             token
         
         })
     } catch (error) {
+        console.log(error)
         next(new ErrorHandler(error.message))
     }
 }
