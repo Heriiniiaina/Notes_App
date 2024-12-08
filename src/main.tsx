@@ -13,8 +13,10 @@ import PublicRoute from './components/PublicRoute/PublicRoute.tsx'
 import "./output.css"
 import Login from './components/Login/Login.tsx'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.tsx'
+import {Toaster} from "react-hot-toast"
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
+    <Toaster/>
     <BrowserRouter>
     
       <Routes>

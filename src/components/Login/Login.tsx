@@ -1,18 +1,27 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { login } from '../../store/note/auth-slice'
 
 type Props = {}
 const BASE_URL = "http://localhost:8000/api/auth"
 const Login = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
     const handleSubmit = async(e:React.FormEvent)=>{
         e.preventDefault()
         try {
             const res = await axios.post(`${BASE_URL}/login`,{email,password})
-            console.log(res.data)
-        } catch (error) {
-            console.log(error)
+            toast.success(res.data.message)
+            const data = {user:res.data.user,token:res.data.token}
+            dispatch(login(data))
+            localStorage.setItem("user-token",data.token)
+        } catch (error:any) {
+            toast.error(error.response.data.message)
         }
     }   
 
