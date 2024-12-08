@@ -28,3 +28,19 @@ export const addNewNote = async (req,res,next)=>{
             next(new ErrorHandler(error.message))
         }
 }
+
+export const getAllUSerNote = async (req,res,next)=>{
+    const {userId} = req.body
+    if(!userId)
+        return next(new ErrorHandler("Autorisation error",403))
+    try {
+        const user = await User.findById(userId)
+        if(!user)
+            return next(new ErrorHandler("User not found",404))
+        return res.status(200).json({
+            notes:user.notes
+        })
+    } catch (error) {
+        next(new ErrorHandler(error.message))
+    }
+}
