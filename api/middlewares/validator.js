@@ -14,3 +14,14 @@ export const registerSchema = Joi.object({
         "string.min":"Le nom doit contenir au moins 4 caractères"
     })
 })
+
+export const noteSchema = Joi.object({
+    title:Joi.string().min(3).required().messages({
+        "string.empty":"Veuillez ajouter un titre",
+        "string.min":"Le doit au moins contenir 3 caractères"
+    }),
+    content:Joi.string().min(5).required().messages({
+          "string.empty":"Veuillez ajouter un contenu",
+        "string.min":"Le contenu doit au moins contenir 4 caractères"
+    })
+})
