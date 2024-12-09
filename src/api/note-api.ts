@@ -4,7 +4,7 @@ import { RootState } from "../store";
 
 const BASE_URL = "http://localhost:8000/api/note"
 interface Notes{
-    id?:string
+    _id?:string
     title:string,
     content:string,
     created_at:string
@@ -17,11 +17,11 @@ export class NoteApi{
         return notes.length + 1;
     }
     
-    static async create(note:Notes){
+    static async create(note:Notes,userId:string){
         try {
-            const id = await this.generateNextId()  
-            console.log(id)  
-            return (await axios.post(`${BASE_URL}`,note)).data
+            
+             
+            return (await axios.patch(`${BASE_URL}/addNote`,{title:note.title,content:note.content,userId})).data.note
         } catch (error) {
             console.log(error)
         }
@@ -37,6 +37,6 @@ export class NoteApi{
         return (await axios.delete(`${BASE_URL}/${noteId}`)).data
     }
     static async update(note:Notes){
-        return (await axios.patch(`${BASE_URL}/${note.id}`,note)).data
+        return (await axios.patch(`${BASE_URL}/${note._id}`,note)).data
     }
 }

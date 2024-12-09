@@ -20,9 +20,14 @@ export const addNewNote = async (req,res,next)=>{
                 }
                 user.notes.push(newNote)
                 await user.save()
+                
+               
+                const addedNote = user.notes[user.notes.length - 1];
+                console.log(addedNote)
                 res.status(201).json({
                     success:true,
-                    message:"Note crée avec succées"
+                    message:"Note crée avec succées",
+                    note:addedNote
                 })
         } catch (error) {
             next(new ErrorHandler(error.message))

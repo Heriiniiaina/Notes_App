@@ -12,9 +12,9 @@ import { Link } from 'react-router-dom'
 const NoteBrowse = () => {
   const [searchText,setSearchText] = useState("")
   const noteList = useSelector((store:RootState)=>store.NOTE.noteList)
-  const filteredList = noteList.filter(note=>{
-    const containerTitle = note.title.trim().toUpperCase().includes(searchText.toUpperCase())
-    const containerContent = note.content.trim().toUpperCase().includes(searchText.toUpperCase())
+  const filteredList = noteList?.filter(note=>{
+    const containerTitle = note?.title.trim().toUpperCase().includes(searchText.toUpperCase())
+    const containerContent = note?.content.trim().toUpperCase().includes(searchText.toUpperCase())
     return containerTitle || containerContent
   })
   console.log(filteredList)

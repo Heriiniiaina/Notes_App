@@ -9,7 +9,8 @@ interface Note {
   _id: string,
   title: string,
   content: string,
-  created_at: string
+  createdAt: string,
+  updatedAt:string
 }
 interface Props{
   noteList:Note[]
@@ -33,7 +34,7 @@ const NoteList = ({noteList}:Props) => {
       {
         noteList.map((note) => {
           return <div key={note._id} className='m-4 '>
-            <TextCard title={note.title} subtitle={note.created_at} content={note.content}
+            <TextCard title={note.title} subtitle={note.createdAt} content={note.content}
               onClick={() => naviagte("/note/" + note._id)} onClickTrash={() => deleteSelectedNote(note)} />
           </div>
         })
