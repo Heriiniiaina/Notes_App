@@ -1,4 +1,4 @@
-import { ErrorHandler } from "../middlewares/errorHandler.js"
+import { ErrorHandler, errorMiddleware } from "../middlewares/errorHandler.js"
 import { noteSchema } from "../middlewares/validator.js"
 import { User } from "../models/user.model.js"
 
@@ -44,6 +44,31 @@ export const getAllUSerNote = async (req,res,next)=>{
             return next(new ErrorHandler("User not found",404))
         return res.status(200).json({
             notes:user.notes
+        })
+    } catch (error) {
+        next(new ErrorHandler(error.message))
+    }
+}
+
+export const deleteNote = async (req,res,next)=>{
+    const noteId = req.params.noteId
+    const {userId} = req.body
+    if(!noteId)
+        return next(new ErrorHandler("Auccun note",404))
+    if(!userId)
+        return next(new ErrorHandler("erreur userId",400))
+    try {
+        const user= await User.findById(userId)
+        if(!user)
+            return next(new ErrorHandler("Auccun user",404))
+        const deletedNote = user.notes.filter((note)=>note._id != noteId)
+        user.notes = deletedNote
+        await user.save()
+        console.log(deletedNote)
+        res.status(200).json({
+            success:true,
+            message:"Note supprimer",
+            user
         })
     } catch (error) {
         next(new ErrorHandler(error.message))
