@@ -10,11 +10,11 @@ interface AuthState {
     token: string | null,
     isAuthenticiate:boolean
 } 
-const token = localStorage.getItem("user-token")
+const token = sessionStorage.getItem("user-token")
 const initialState:AuthState = {
     user:null,
     token:token,
-    isAuthenticiate:false
+    isAuthenticiate:!!sessionStorage.getItem("user-token")
 }
 
 const authSlice = createSlice({
