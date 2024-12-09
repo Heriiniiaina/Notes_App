@@ -27,7 +27,8 @@ const NoteCreate = () => {
   const disptach = useDispatch()
   const user = useSelector((store:RootState)=>store.auth.user)
   const createNote =async (formValue:Notes)=>{
-    const createdNote = await  NoteApi.create({...formValue,created_at:new Date().toLocaleDateString()},user.userId)
+    const userId = user != null ? user.userId : ""
+    const createdNote = await  NoteApi.create({...formValue,created_at:new Date().toLocaleDateString()},userId)
     console.log(createdNote)
     const notes:Note={
         _id:createdNote._id,
