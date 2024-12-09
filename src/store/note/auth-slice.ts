@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit"
-
+import {jwtDecode} from "jwt-decode"
 interface User{
     userId:string,
     fullName:string,
@@ -16,7 +16,14 @@ const initialState:AuthState = {
     token:token,
     isAuthenticiate:!!sessionStorage.getItem("user-token")
 }
-
+if(token){
+    try {
+        const decodedUSer:User = jwtDecode(token)
+        initialState.user = decodedUSer
+    } catch (error) {
+        
+    }
+}
 const authSlice = createSlice({
     name:"auth",
     initialState,
@@ -34,3 +41,4 @@ const authSlice = createSlice({
 export const {login} = authSlice.actions
 export const authReducer = authSlice.reducer
 export default User
+
