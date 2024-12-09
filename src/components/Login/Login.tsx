@@ -26,7 +26,7 @@ const Login = () => {
             toast.success(res.data.message)
             const data:Userdata = {user:res.data.user,token:res.data.token}
             dispatch(login(data))
-            localStorage.setItem("user-token",data.token)
+            sessionStorage.setItem("user-token",data.token)
         } catch (error:any) {
             toast.error(error.response.data.message)
         }
