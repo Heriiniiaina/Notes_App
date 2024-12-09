@@ -13,10 +13,10 @@ interface FORMVALUE{
   
 }
 interface Note {
-  id:string,
+  _id:string,
   title:string,
   content:string,
-  created_at:string
+  createdAt:string
 }
 
 const Note = () => {
@@ -24,16 +24,20 @@ const Note = () => {
   const dispatch = useDispatch()
   const [isEditable,setISEditable] = useState(false)
   const {id} = useParams()
-  const note:Note = useSelector((store:RootState)=>store.NOTE.noteList.find(note=>note.id === id)) as Note
+  const note = useSelector((store:RootState)=>store.NOTE.noteList.find(note=>note._id === id)) 
+  const user  = useSelector((store:RootState)=>store.auth.user)
+  
   console.log("**",note)
   async function submit(formValue:FORMVALUE){
-     const updatedNote = await NoteApi.update({...formValue,created_at:note.created_at,id})
-      dispatch(updateNote(updatedNote))
-      setISEditable(false)
+    // const updatedNote = await NoteApi.update({...formValue,created_at:note.created_at,_id})
+     // dispatch(updateNote(updatedNote))
+     // setISEditable(false)
   }
   const deleteSelectedNote = (note: Note) => {
+    const userId = user != null ? user.userId : ""
+    console.log("** "+ userId)
     if (window.confirm("Supprimer la note ?")) {
-      NoteApi.deleteById(note.id)
+      NoteApi.deleteById(note._id,userId)
       dispatch(deleteNote(note))
       navigate("/")
     }

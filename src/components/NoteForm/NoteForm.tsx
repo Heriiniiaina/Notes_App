@@ -5,17 +5,18 @@ import { Validators } from '../../services/form-validator';
 import FieldError from '../FiealdError/FieldError';
 
 interface Note {
-    id:string,
+    _id:string,
     title:string,
     content:string,
-    created_at:string
+    createdAt:string,
+    updatedAt:string
 }
 
 interface FormProps {
     title: string,
     onClickEdit?: React.MouseEventHandler<SVGElement>,
     onClickTrash?:React.MouseEventHandler<SVGElement>,
-    onSubmit?: (formValue: { id?: string; title: string; content: string; created_at?: string }) => void
+    onSubmit?: (formValue: { _id?: string; title: string; content: string; created_at?: string }) => void
     isEditable:boolean,
     note?:Note
 }

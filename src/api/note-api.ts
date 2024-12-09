@@ -33,8 +33,8 @@ export class NoteApi{
     static async fetchById(noteId:string){
         return (await axios.get(`${BASE_URL}/${noteId}`)).data
     }
-    static async deleteById(noteId:string){
-        return (await axios.delete(`${BASE_URL}/${noteId}`)).data
+    static async deleteById(noteId:string,userId:string){
+        return (await axios.patch(`${BASE_URL}/deleteNote/${noteId}`,{userId})).data
     }
     static async update(note:Notes){
         return (await axios.patch(`${BASE_URL}/${note._id}`,note)).data
