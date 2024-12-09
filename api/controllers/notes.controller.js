@@ -74,3 +74,32 @@ export const deleteNote = async (req,res,next)=>{
         next(new ErrorHandler(error.message))
     }
 }
+
+export const updateNote = async(req,res,next)=>{
+        const noteId = req.params.noteId
+        const {title,content,userId} = req.body
+        if(!userId)
+            return next(new ErrorHandler("userId erreur",400))
+        if(!title || !content) 
+            return next(new ErrorHandler("Veuillez remplir tous les champs",400))
+        if(!noteId)
+            return next(new ErrorHandler("noteId erreur",400))
+        try {
+            const user =await User.findById(userId)
+            if(!user)
+                return next(new ErrorHandler("Auccun user avec cette Id",404))
+            const index = user.notes.findIndex((note)=>note._id==noteId)
+            console.log(index)
+            console.log(user.notes[index])
+            user.notes[index].title=title
+            user.notes[index].content=content
+            user.notes[index].updatedAt=Date.now()
+            await user.save()
+            res.status(200).json({
+                success:true,
+                message:"mis a jour"
+            })
+        } catch (error) {
+            next(new ErrorHandler(error.message))
+        }
+}

@@ -11,7 +11,7 @@ function App() {
   const userId = useSelector((store:RootState)=>store.auth.user?.userId)
   const id = userId ? userId : ""
   const fetchAll = async ()=>{
-    
+
       const noteList = await NoteApi.fetchAll(id)
       console.log(noteList)
     disptach(setNoteList(noteList.notes))
