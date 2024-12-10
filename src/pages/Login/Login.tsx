@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { login } from '../../store/note/auth-slice'
 interface User{
     userId:string,
@@ -33,14 +33,18 @@ const Login = () => {
     }   
 
   return (
-    <div className='flex h-screen flex-col justify-center items-center gap-5 bg-slate-900'>
+    <div className='h-screen flex flex-col bg-slate-900 justify-center items-center'>
+    <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }} className="flex flex-col items-center rounded-lg p-3 sm:w-[600px] max-w-full gap-6">
         <h2 className='text-2xl text-white'>Bon retour</h2>
-        <form action="" onSubmit={handleSubmit} className='flex flex-col justify-center items-center gap-3'>
-            <input className='outline-1 border-black border-2 pl-1' placeholder='Adresse email' type='text' onChange={e=>setEmail(e.target.value)}/>
-            <input className='outline-1 border-black border-2 pl-1' placeholder='Mot de passe' type='password' onChange={e=>setPassword(e.target.value)}/>
-            <button type='submit' className='bg-blue-600 p-4 text-white rounded-md'>Se connecter</button>
+        <form action="" onSubmit={handleSubmit} className='flex flex-col justify-center items-center gap-4'>
+            <input  className='outline-1 rounded border-black border-2 pl-2 py-2' placeholder='Adresse email' type='text' onChange={e=>setEmail(e.target.value)}/>
+            <input  className='outline-1 rounded border-black border-2 pl-2 py-2' placeholder='Mot de passe' type='password' onChange={e=>setPassword(e.target.value)}/>
+            <button type='submit' className='bg-blue-600 p-3 text-white rounded-md'>Se connecter</button>
+            <p className='text-white'>Vous n'avez pas encore de compte ? <Link style={{color:"#2563eb"}} to={"/register"}>cliquer ici </Link></p>
         </form>
     </div>
+    </div>
+ 
   )
 }
 
