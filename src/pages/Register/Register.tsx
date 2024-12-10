@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { login } from '../../store/note/auth-slice'
 interface User{
     userId:string,
@@ -16,7 +16,7 @@ interface Userdata{
 const BASE_URL = "http://localhost:8000/api/auth"
 const Register = () => {
     
-    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [fullName,setFullName] = useState("")
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
@@ -26,8 +26,8 @@ const Register = () => {
             const res = await axios.post(`${BASE_URL}/register`,{fullName,email,password})
             toast.success(res.data.message)
             const data:Userdata = {user:res.data.user,token:res.data.token}
-            dispatch(login(data))
-            sessionStorage.setItem("user-token",data.token)
+            navigate("/login")
+        
         } catch (error:any) {
             toast.error(error.response.data.message)
         }
