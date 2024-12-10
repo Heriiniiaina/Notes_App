@@ -14,6 +14,7 @@ import "./output.css"
 import Login from './pages/Login/Login.tsx'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.tsx'
 import {Toaster} from "react-hot-toast"
+import Register from './pages/Register/Register.tsx'
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <Toaster/>
@@ -22,6 +23,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route element={<PublicRoute/>}>
             <Route path='/login' element={<Login/>}/>
+            <Route path='/register' element={<Register/>}/>
         </Route>
         <Route  element={<ProtectedRoute/>}>
 
