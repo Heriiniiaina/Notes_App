@@ -1,5 +1,5 @@
 import { ErrorHandler } from "../middlewares/errorHandler.js"
-import { passwordSchema, registerSchema } from "../middlewares/validator.js"
+import { EmailSchema, passwordSchema, registerSchema } from "../middlewares/validator.js"
 import { User } from "../models/user.model.js"
 import { comparePassword, hashPassword } from "../utils/bcrypt.js"
 import { hashCode, hashCode } from "../utils/hashCode.js"
@@ -70,6 +70,9 @@ export const sendResetPasswordCode = async (req,res,next)=>{
     if(!email)
         return next(new ErrorHandler("Veuillez entrer votre email",400))
     try {
+        const {error} = EmailSchema.validate({email})
+        if(error)
+            return next(new ErrorHandler(error.details[0].message,400))
         const user = await User.findOne({email:email}).select("+resetPasswordCode +resetPasswordCodeValidity")
         if(!user)
             return next(new ErrorHandler("Auccun utilisateur enregistré avec cette email",404))
