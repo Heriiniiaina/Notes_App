@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { login } from '../../store/note/auth-slice'
 interface User{
     userId:string,
@@ -15,7 +15,7 @@ interface Userdata{
 } 
 const BASE_URL = "http://localhost:8000/api/auth"
 const Login = () => {
-    const navigate = useNavigate()
+    
     const dispatch = useDispatch()
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
