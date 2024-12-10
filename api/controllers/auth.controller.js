@@ -2,7 +2,7 @@ import { ErrorHandler } from "../middlewares/errorHandler.js"
 import { registerSchema } from "../middlewares/validator.js"
 import { User } from "../models/user.model.js"
 import { comparePassword, hashPassword } from "../utils/bcrypt.js"
-import { hashCode } from "../utils/hashCode.js"
+import { hashCode, hashCode } from "../utils/hashCode.js"
 import { transport } from "../utils/sendEmail.js"
 import { generateToken } from "../utils/token.js"
 
@@ -95,4 +95,34 @@ export const sendResetPasswordCode = async (req,res,next)=>{
     } catch (error) {
         next(new ErrorHandler(error.message))
     }
+}
+
+export const verifyResetPasswordCode= async (req,res,next)=>{
+    const {email,code} = req.body
+    if(!email)
+        return next(new ErrorHandler("Email non trouvé",404))
+    if(!code)
+        return next(new ErrorHandler("Veuillez entrer le code",400))
+    try {
+        const user = await User.findOne({email:email}).select("+resetPasswordCode +resetPasswordCodeValidity")
+        if(!user)
+            return next(new ErrorHandler("Auccun utilisateur enregistré avec cet email",404))
+        const hashCode = hashCode(code)
+        if(Date.now() - user.resetPasswordCodeValidity > 10*60*1000){
+            return next(new ErrorHandler("Votre code est expiré ! Veuillez envoye a nouveau",400))
+        }
+        if(hashCode!=user.resetPasswordCode){
+            return next(new ErrorHandler("Votre code est incorrect",400))
+        }
+        user.resetPasswordCode = undefined,
+        user.resetPasswordCodeValidity = undefined
+        res.status(200).json({
+            success:true,
+            message:"Code correct"
+        })
+    } catch (error) {
+        next(new ErrorHandler(error.message))
+        
+    }
+        
 }
