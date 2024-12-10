@@ -1,5 +1,5 @@
 import { ErrorHandler } from "../middlewares/errorHandler.js"
-import { registerSchema } from "../middlewares/validator.js"
+import { passwordSchema, registerSchema } from "../middlewares/validator.js"
 import { User } from "../models/user.model.js"
 import { comparePassword, hashPassword } from "../utils/bcrypt.js"
 import { hashCode, hashCode } from "../utils/hashCode.js"
@@ -122,7 +122,32 @@ export const verifyResetPasswordCode= async (req,res,next)=>{
         })
     } catch (error) {
         next(new ErrorHandler(error.message))
-        
+
     }
         
+}
+
+export const changePassword = async (req,res,next)=>{
+    const {email,newPassword} = req.body
+    if(!email)
+        return next(new ErrorHandler("Email non trouvé",404))
+    if(!newPassword)
+        return next(new ErrorHandler("Veillez entrer votre nouveau mot de passe",400))
+    try {
+        const user = await User.findOne({email:email}).select("+password")
+        if(!user)
+            return next(new ErrorHandler("Auccun utilisateur avec cette email",404))
+            const {error} = passwordSchema.validate({password:newPassword})
+            if(error)
+                return next(new ErrorHandler(error.details[0].message),400)
+            const hashedPassword = hashPassword(newPassword)
+            user.password = hashedPassword
+            await user.save()
+            res.status(200).json({
+                success:true,
+                message:"Mot de passe mis a jour"
+            })
+    } catch (error) {
+        next(new ErrorHandler(error.message))
+    }
 }

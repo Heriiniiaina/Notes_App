@@ -31,3 +31,9 @@ export const EmailSchema = Joi.object({
         "string.email":"Veuillez entrer un email valide"
     })
 })
+export const passwordSchema = Joi.object({
+    password:Joi.string().min(6).messages({
+        "string.empty":"Veuillez entrée le mot de passe",
+        "string.min":"Le mot de passe doit au moins contenir 6 caractères"
+    }),
+})
