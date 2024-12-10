@@ -82,7 +82,7 @@ export const sendResetPasswordCode = async (req,res,next)=>{
         })
         if((await info).accepted == user.email){
             const hashedCode = hashCode(code,process.env.HASH_CODE_KEY)
-            user.resetPasswordCode = hashCode
+            user.resetPasswordCode = hashedCode
             user.resetPasswordCodeValidity = Date.now()
             await user.save()
             res.status(200).json({
