@@ -37,7 +37,15 @@ const UserSchema = mongoose.Schema(
             required:true,
             select:false
         },
-        notes:[Note]
+        notes:[Note],
+        resetPasswordCode:{
+            type:String,
+            select:false
+        },
+        resetPasswordCodeValidity:{
+            type:number,
+            select:false
+        }
     },
     {timestamps:true}
 )

@@ -2,6 +2,8 @@ import { ErrorHandler } from "../middlewares/errorHandler.js"
 import { registerSchema } from "../middlewares/validator.js"
 import { User } from "../models/user.model.js"
 import { comparePassword, hashPassword } from "../utils/bcrypt.js"
+import { hashCode } from "../utils/hashCode.js"
+import { transport } from "../utils/sendEmail.js"
 import { generateToken } from "../utils/token.js"
 
 export const register = async(req,res,next)=>{
@@ -68,8 +70,29 @@ export const sendResetPasswordCode = async (req,res,next)=>{
     if(!email)
         return next(new ErrorHandler("Veuillez entrer votre email",400))
     try {
-        
+        const user = await User.findOne({email:email}).select("+resetPasswordCode +resetPasswordCodeValidity")
+        if(!user)
+            return next(new ErrorHandler("Auccun utilisateur enregistré avec cette email",404))
+        const code = Math.floor(Math.random() * 1000000).toString()
+        const info = transport.sendMail({
+            from:process.env.EMAIL_SEND,
+            to:user.email,
+            subject:"Reset Password Code",
+            html:"<h1>" + code + "</h1>"
+        })
+        if((await info).accepted == user.email){
+            const hashedCode = hashCode(code,process.env.HASH_CODE_KEY)
+            user.resetPasswordCode = hashCode
+            user.resetPasswordCodeValidity = Date.now()
+            await user.save()
+            res.status(200).json({
+                success:true,
+                message:"Code envoyer vers votre email"
+            })
+            throw new Error("Il y a un probléme d' envoye")
+        }
+
     } catch (error) {
-        
+        next(new ErrorHandler(error.message))
     }
 }
