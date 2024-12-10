@@ -29,9 +29,11 @@ const Note = () => {
   
   console.log("**",note)
   async function submit(formValue:FORMVALUE){
-    // const updatedNote = await NoteApi.update({...formValue,created_at:note.created_at,_id})
-     // dispatch(updateNote(updatedNote))
-     // setISEditable(false)
+    const userId = user != null ? user.userId : ""
+     const updatedNote = await NoteApi.update({...formValue,_id:note?._id,created_at:Date.now().toString()},userId)
+     console.log(updatedNote)
+     dispatch(updateNote(updatedNote))
+     setISEditable(false)
   }
   const deleteSelectedNote = (note: Note) => {
     const userId = user != null ? user.userId : ""

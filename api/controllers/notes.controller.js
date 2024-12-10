@@ -97,7 +97,8 @@ export const updateNote = async(req,res,next)=>{
             await user.save()
             res.status(200).json({
                 success:true,
-                message:"mis a jour"
+                message:"mis a jour",
+                note:user.notes[index]
             })
         } catch (error) {
             next(new ErrorHandler(error.message))

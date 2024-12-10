@@ -38,6 +38,7 @@ const NoteForm = ({isEditable=true, title,onClickEdit,onClickTrash,onSubmit,note
     const updateFormValue = (e:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
         setFormValue({...formValue,[e.target.name]:e.target.value})
         validate(e.target.name as keyof typeof Validator,e.target.value)
+      
     }
     
     const validate = (name:keyof typeof Validator,value:string)=>{
