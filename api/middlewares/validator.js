@@ -25,3 +25,9 @@ export const noteSchema = Joi.object({
         "string.min":"Le contenu doit au moins contenir 4 caractères"
     })
 })
+
+export const EmailSchema = Joi.object({
+    email:Joi.string().email().messages({
+        "string.email":"Veuillez entrer un email valide"
+    })
+})

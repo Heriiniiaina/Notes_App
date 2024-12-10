@@ -25,7 +25,7 @@ const Register = () => {
         try {
             const res = await axios.post(`${BASE_URL}/register`,{fullName,email,password})
             toast.success(res.data.message)
-            const data:Userdata = {user:res.data.user,token:res.data.token}
+           
             navigate("/login")
         
         } catch (error:any) {

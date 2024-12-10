@@ -62,3 +62,14 @@ export const login = async(req,res,next)=>{
         next(new ErrorHandler(error.message))
     }
 }
+
+export const sendResetPasswordCode = async (req,res,next)=>{
+    const {email} = req.body
+    if(!email)
+        return next(new ErrorHandler("Veuillez entrer votre email",400))
+    try {
+        
+    } catch (error) {
+        
+    }
+}
