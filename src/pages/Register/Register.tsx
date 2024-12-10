@@ -1,18 +1,10 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { useDispatch } from 'react-redux'
+
 import { Link, useNavigate } from 'react-router-dom'
-import { login } from '../../store/note/auth-slice'
-interface User{
-    userId:string,
-    fullName:string,
-    email:string
-}
-interface Userdata{
-    user:User,
-    token:string
-} 
+
+
 const BASE_URL = "http://localhost:8000/api/auth"
 const Register = () => {
     

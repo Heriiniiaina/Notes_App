@@ -1,4 +1,4 @@
-import React from 'react'
+
 import NoteForm from '../../components/NoteForm/NoteForm'
 import { NoteApi } from '../../api/note-api'
 import { useDispatch, useSelector } from 'react-redux'
@@ -42,7 +42,7 @@ const NoteCreate = () => {
     navigate("/")
   }
   return (
-    <NoteForm isEditable={true} title='Create a note' onSubmit={createNote}/>
+    <NoteForm isEditable={true} title='Créér une note' onSubmit={createNote}/>
   )
 }
 

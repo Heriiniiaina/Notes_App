@@ -43,7 +43,7 @@ const UserSchema = mongoose.Schema(
             select:false
         },
         resetPasswordCodeValidity:{
-            type:number,
+            type:Number,
             select:false
         }
     },

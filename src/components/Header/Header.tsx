@@ -10,11 +10,11 @@ const Header = () => {
   return (
     <div className='flex p-8 bg-white shadow-sm shadow-slate-900'>
         <div className='w-full sm:w-1/3'>
-            <Logo onClick={()=>navigate("/")} title='NoteApp' subtitle='Manage your notes' image={logo}/>
+            <Logo onClick={()=>navigate("/")} title='NoteApp' subtitle='Gérer vos notes' image={logo}/>
         </div>
         <div className='w-full sm:w-2/3 text-end'>
                 <ButtonPrimary isDisable={false} onClick={()=>navigate("/note/new")}>
-                    Add note +
+                    Créér une note
                 </ButtonPrimary>
         </div>
     </div>
