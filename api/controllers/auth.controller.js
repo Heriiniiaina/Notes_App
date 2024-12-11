@@ -144,7 +144,7 @@ export const changePassword = async (req,res,next)=>{
             const {error} = passwordSchema.validate({password:newPassword})
             if(error)
                 return next(new ErrorHandler(error.details[0].message),400)
-            const hashedPassword = hashPassword(newPassword)
+            const hashedPassword =await hashPassword(newPassword)
             user.password = hashedPassword
             await user.save()
             res.status(200).json({
@@ -152,6 +152,7 @@ export const changePassword = async (req,res,next)=>{
                 message:"Mot de passe mis a jour"
             })
     } catch (error) {
+        console.log(error)
         next(new ErrorHandler(error.message))
     }
 }

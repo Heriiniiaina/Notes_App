@@ -12,7 +12,7 @@ const BASE_URL = "http://localhost:8000/api/auth"
 const ChangePassword= () => {
     
     const navigate = useNavigate()
-    const [code,sentCode] = useState("")
+    const [newPassword,setNewPassword] = useState("")
     const [isLoading,setIsLoading] = useState(false)
     
     const handleSubmit = async(e:React.FormEvent)=>{
@@ -20,10 +20,10 @@ const ChangePassword= () => {
         setIsLoading(true)
         try {
             const email = sessionStorage.getItem("resetPasswordEmail")
-            const res = await axios.patch(`${BASE_URL}/verifyResetPasswordCode`,{email,code})
+            const res = await axios.patch(`${BASE_URL}/changePassword`,{email,newPassword})
             toast.success(res.data.message)
            
-            
+            navigate("/login")
         
         } catch (error:any) {
             toast.error(error.response.data.message)
@@ -38,8 +38,8 @@ const ChangePassword= () => {
         <h2 className='text-2xl text-white'></h2>
         <form action="" onSubmit={handleSubmit} className='flex flex-col justify-center items-center gap-4'>
         
-            <p className='text-xl text-white'>Entrer le code envoyé dans votre email</p>
-            <input  className='outline-1 rounded border-black border-2 pl-2 py-2' placeholder='Code' type='text' onChange={e=>sentCode(e.target.value)}/>
+            <p className='text-xl text-white'>Entrer votre nouveau mot de passe</p>
+            <input  className='outline-1 rounded border-black border-2 pl-2 py-2' placeholder='Mot de passe' type='password' onChange={e=>setNewPassword(e.target.value)}/>
           
             <button type='submit' className='bg-blue-600 p-3 text-white rounded-md'>
             {isLoading ? <ClipLoader color="#fff" size={20} /> : "Valider"}

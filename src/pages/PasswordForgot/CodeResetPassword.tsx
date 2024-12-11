@@ -22,7 +22,7 @@ const CodeResetPassword= () => {
             const email = sessionStorage.getItem("resetPasswordEmail")
             const res = await axios.patch(`${BASE_URL}/verifyResetPasswordCode`,{email,code})
             toast.success(res.data.message)
-           
+            
             navigate("/change-password")
         
         } catch (error:any) {
