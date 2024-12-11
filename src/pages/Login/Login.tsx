@@ -13,7 +13,7 @@ interface Userdata{
     user:User,
     token:string
 } 
-const BASE_URL = "http://localhost:8000/api/auth"
+const BASE_URL = "https://notes-app-vxt5.onrender.com/api/auth"
 const Login = () => {
     
     const dispatch = useDispatch()

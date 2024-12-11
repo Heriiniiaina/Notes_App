@@ -5,7 +5,7 @@ import toast from 'react-hot-toast'
 import { Link, useNavigate } from 'react-router-dom'
 
 
-const BASE_URL = "http://localhost:8000/api/auth"
+const BASE_URL = "https://notes-app-vxt5.onrender.com/api/auth"
 const Register = () => {
     
     const navigate = useNavigate()

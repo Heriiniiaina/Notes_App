@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import { FaPencil, FaTrash } from 'react-icons/fa6'
 import ButtonPrimary from '../ButtonPrimary/ButtonPrimary'
 import { Validators } from '../../services/form-validator';

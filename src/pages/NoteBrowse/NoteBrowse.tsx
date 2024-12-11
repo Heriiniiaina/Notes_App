@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import TextCard from '../../components/TextCard/TextCard'
+import  { useState } from 'react'
+
 import NoteList from '../../containers/NoteList'
 import SearchBar from '../SearchBar/SearchBar'
 import { useSelector } from 'react-redux'
