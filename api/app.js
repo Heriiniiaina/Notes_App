@@ -12,8 +12,8 @@ config()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cors({
-    origin:"http://localhost:5173",
-    //origin:"https://sweet-zabaione-f2c708.netlify.app",
+   // origin:"http://localhost:5173",
+    origin:"https://sweet-zabaione-f2c708.netlify.app",
     credentials:true
 }))
 app.use(cookieParser())
