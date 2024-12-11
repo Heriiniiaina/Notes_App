@@ -7,8 +7,8 @@ import { ClipLoader } from 'react-spinners'
 
 
 
-const BASE_URL = "http://localhost:8000/api/auth"
-//const BASE_URL = "https://notes-app-vxt5.onrender.com/api/auth"
+
+const BASE_URL = "https://notes-app-vxt5.onrender.com/api/auth"
 const ChangePassword= () => {
     
     const navigate = useNavigate()
@@ -24,6 +24,7 @@ const ChangePassword= () => {
             toast.success(res.data.message)
            
             navigate("/login")
+            sessionStorage.removeItem("resetPasswordEmail")
         
         } catch (error:any) {
             toast.error(error.response.data.message)

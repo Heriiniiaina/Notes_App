@@ -1,8 +1,8 @@
 import axios from "axios"
 
 
-const BASE_URL = "http://localhost:8000/api/note"
-//const BASE_URL = "https://notes-app-vxt5.onrender.com/api/note"
+
+const BASE_URL = "https://notes-app-vxt5.onrender.com/api/note"
 interface Notes{
     _id?:string
     title:string,

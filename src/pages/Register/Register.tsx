@@ -1,21 +1,23 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-
+import {ClipLoader} from "react-spinners"
 import { Link, useNavigate } from 'react-router-dom'
 
 
 
-const BASE_URL = "http://localhost:8000/api/note"
-//const BASE_URL = "https://notes-app-vxt5.onrender.com/api/auth"
+
+const BASE_URL = "https://notes-app-vxt5.onrender.com/api/auth"
 const Register = () => {
     
     const navigate = useNavigate()
     const [fullName,setFullName] = useState("")
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+    const [isLoading,setIsLoading] = useState(false)
     const handleSubmit = async(e:React.FormEvent)=>{
         e.preventDefault()
+        setIsLoading(true)
         try {
             const res = await axios.post(`${BASE_URL}/register`,{fullName,email,password})
             toast.success(res.data.message)
@@ -24,6 +26,8 @@ const Register = () => {
         
         } catch (error:any) {
             toast.error(error.response.data.message)
+        }finally{
+            setIsLoading(false)
         }
     }   
 
@@ -35,7 +39,9 @@ const Register = () => {
         <input  className='outline-1 rounded border-black border-2 pl-2 py-2' placeholder='Nom complet' type='text' onChange={e=>setFullName(e.target.value)}/>
             <input  className='outline-1 rounded border-black border-2 pl-2 py-2' placeholder='Adresse email' type='text' onChange={e=>setEmail(e.target.value)}/>
             <input  className='outline-1 rounded border-black border-2 pl-2 py-2' placeholder='Mot de passe' type='password' onChange={e=>setPassword(e.target.value)}/>
-            <button type='submit' className='bg-blue-600 p-3 text-white rounded-md'>S'inscrire</button>
+            <button type='submit' className='bg-blue-600 p-3 text-white rounded-md'>
+            {isLoading ? <ClipLoader color="#fff" size={20} /> : "S'inscrire"}
+            </button>
             <p className='text-white'>Vous avez déja un compte ? <Link style={{color:"#2563eb"}} to={"/login"}>cliquer ici </Link></p>
         </form>
     </div>
