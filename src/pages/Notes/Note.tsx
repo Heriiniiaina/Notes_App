@@ -47,7 +47,7 @@ const Note = () => {
   }
   return (
     <>
-        {note && <NoteForm note={note} isEditable={isEditable} title={isEditable ? "Edit note" : note.title} onClickEdit={()=>setISEditable(!isEditable)} onClickTrash={()=>deleteSelectedNote(note)} onSubmit={isEditable  ?  submit : undefined}/>}
+        {note && <NoteForm isLoading = {false} note={note} isEditable={isEditable} title={isEditable ? "Edit note" : note.title} onClickEdit={()=>setISEditable(!isEditable)} onClickTrash={()=>deleteSelectedNote(note)} onSubmit={isEditable  ?  submit : undefined}/>}
     </>
   )
 }

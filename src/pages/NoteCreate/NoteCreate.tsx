@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addNote } from '../../store/note/note-slice'
 import { useNavigate } from 'react-router-dom'
 import { RootState } from '../../store'
+import { useState } from 'react'
 
 
 interface Notes{
@@ -25,8 +26,11 @@ interface Note{
 const NoteCreate = () => {
   const navigate = useNavigate()
   const disptach = useDispatch()
+  const [isLoading,setIsLoading] = useState(false)
   const user = useSelector((store:RootState)=>store.auth.user)
   const createNote =async (formValue:Notes)=>{
+    setIsLoading(true)
+   try {
     const userId = user != null ? user.userId : ""
     const createdNote = await  NoteApi.create({...formValue,created_at:new Date().toLocaleDateString()},userId)
     console.log(createdNote)
@@ -40,9 +44,15 @@ const NoteCreate = () => {
     disptach(addNote(notes))
     alert("Note créé")
     navigate("/")
+   } catch (error) {
+      console.log(error)
+   }finally {
+    setIsLoading(false)
+   }
+ 
   }
   return (
-    <NoteForm isEditable={true} title='Créér une note' onSubmit={createNote}/>
+    <NoteForm isLoading={isLoading} isEditable={true} title='Créér une note' onSubmit={createNote}/>
   )
 }
 
