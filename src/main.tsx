@@ -10,7 +10,7 @@ import PageNotFound from './pages/PageNotFound/PageNotFound.tsx'
 import Note from './pages/Notes/Note.tsx'
 import NoteCreate from './pages/NoteCreate/NoteCreate.tsx'
 import PublicRoute from './components/PublicRoute/PublicRoute.tsx'
-import "./output.css"
+
 import Login from './pages/Login/Login.tsx'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.tsx'
 import {Toaster} from "react-hot-toast"
