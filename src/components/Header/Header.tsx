@@ -13,7 +13,7 @@ const Header = () => {
             <Logo onClick={()=>navigate("/")} title='NoteApp' subtitle='Gérer vos notes' image={logo}/>
         </div>
         <div className='w-full sm:w-2/3 text-end'>
-                <ButtonPrimary isDisable={false} onClick={()=>navigate("/note/new")}>
+                <ButtonPrimary isLoading={false} isDisable={false} onClick={()=>navigate("/note/new")}>
                     Créér une note
                 </ButtonPrimary>
         </div>
