@@ -26,14 +26,21 @@ const Note = () => {
   const {id} = useParams()
   const note = useSelector((store:RootState)=>store.NOTE.noteList.find(note=>note._id === id)) 
   const user  = useSelector((store:RootState)=>store.auth.user)
-  
+  const [isLoading,setIsLoading] = useState(false)
   console.log("**",note)
   async function submit(formValue:FORMVALUE){
     const userId = user != null ? user.userId : ""
-     const updatedNote = await NoteApi.update({...formValue,_id:note?._id,created_at:Date.now().toString()},userId)
-     console.log(updatedNote)
-     dispatch(updateNote(updatedNote))
-     setISEditable(false)
+    setIsLoading(true)
+    try {
+      const updatedNote = await NoteApi.update({...formValue,_id:note?._id,created_at:Date.now().toString()},userId)
+      console.log(updatedNote)
+      dispatch(updateNote(updatedNote))
+      setISEditable(false)
+    } catch (error) {
+      console.log(error)
+    }finally{
+      setIsLoading(false)
+    }
   }
   const deleteSelectedNote = (note: Note) => {
     const userId = user != null ? user.userId : ""
@@ -47,7 +54,7 @@ const Note = () => {
   }
   return (
     <>
-        {note && <NoteForm isLoading = {false} note={note} isEditable={isEditable} title={isEditable ? "Edit note" : note.title} onClickEdit={()=>setISEditable(!isEditable)} onClickTrash={()=>deleteSelectedNote(note)} onSubmit={isEditable  ?  submit : undefined}/>}
+        {note && <NoteForm isLoading = {isLoading} note={note} isEditable={isEditable} title={isEditable ? "Edit note" : note.title} onClickEdit={()=>setISEditable(!isEditable)} onClickTrash={()=>deleteSelectedNote(note)} onSubmit={isEditable  ?  submit : undefined}/>}
     </>
   )
 }
