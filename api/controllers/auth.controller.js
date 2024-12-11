@@ -110,11 +110,11 @@ export const verifyResetPasswordCode= async (req,res,next)=>{
         const user = await User.findOne({email:email}).select("+resetPasswordCode +resetPasswordCodeValidity")
         if(!user)
             return next(new ErrorHandler("Auccun utilisateur enregistré avec cet email",404))
-        const hashCode = hashCode(code)
+        const hashedCode = hashCode(code,process.env.HASH_CODE_KEY)
         if(Date.now() - user.resetPasswordCodeValidity > 10*60*1000){
             return next(new ErrorHandler("Votre code est expiré ! Veuillez envoye a nouveau",400))
         }
-        if(hashCode!=user.resetPasswordCode){
+        if(hashedCode!=user.resetPasswordCode){
             return next(new ErrorHandler("Votre code est incorrect",400))
         }
         user.resetPasswordCode = undefined,
@@ -124,6 +124,7 @@ export const verifyResetPasswordCode= async (req,res,next)=>{
             message:"Code correct"
         })
     } catch (error) {
+        console.log(error)
         next(new ErrorHandler(error.message))
 
     }

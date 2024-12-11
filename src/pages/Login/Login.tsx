@@ -4,6 +4,7 @@ import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { login } from '../../store/note/auth-slice'
+import {ClipLoader} from "react-spinners"
 interface User{
     userId:string,
     fullName:string,
@@ -13,14 +14,17 @@ interface Userdata{
     user:User,
     token:string
 } 
-const BASE_URL = "https://notes-app-vxt5.onrender.com/api/auth"
+//const BASE_URL = "https://notes-app-vxt5.onrender.com/api/auth"
+const BASE_URL = "http://localhost:8000/api/auth"
 const Login = () => {
     
     const dispatch = useDispatch()
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+    const [isLoading,setIsLoading] = useState(false)
     const handleSubmit = async(e:React.FormEvent)=>{
         e.preventDefault()
+        setIsLoading(true)
         try {
             const res = await axios.post(`${BASE_URL}/login`,{email,password})
             toast.success(res.data.message)
@@ -29,6 +33,8 @@ const Login = () => {
             sessionStorage.setItem("user-token",data.token)
         } catch (error:any) {
             toast.error(error.response.data.message)
+        }finally{
+            setIsLoading(false)
         }
     }   
 
@@ -39,7 +45,10 @@ const Login = () => {
         <form action="" onSubmit={handleSubmit} className='flex flex-col justify-center items-center gap-4'>
             <input  className='outline-1 rounded border-black border-2 pl-2 py-2' placeholder='Adresse email' type='text' onChange={e=>setEmail(e.target.value)}/>
             <input  className='outline-1 rounded border-black border-2 pl-2 py-2' placeholder='Mot de passe' type='password' onChange={e=>setPassword(e.target.value)}/>
-            <button type='submit' className='bg-blue-600 p-3 text-white rounded-md'>Se connecter</button>
+            <p className='text-white'><Link to={"/forgot-password"}>Mot de passe oublié ?</Link></p>
+            <button type='submit' className='bg-blue-600 p-3 text-white rounded-md'>
+            {isLoading ? <ClipLoader color="#fff" size={20} /> : "Se connecter"}
+            </button>
             <p className='text-white'>Vous n'avez pas encore de compte ? <Link style={{color:"#2563eb"}} to={"/register"}>cliquer ici </Link></p>
         </form>
     </div>

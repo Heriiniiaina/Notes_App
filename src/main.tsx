@@ -15,6 +15,9 @@ import Login from './pages/Login/Login.tsx'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.tsx'
 import {Toaster} from "react-hot-toast"
 import Register from './pages/Register/Register.tsx'
+import ForgotPassword from './pages/PasswordForgot/SendPasswordCode.tsx'
+import CodeResetPassword from './pages/PasswordForgot/CodeResetPassword.tsx'
+import ChangePassword from './pages/PasswordForgot/ChangePassword.tsx'
 createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <Toaster/>
@@ -24,6 +27,9 @@ createRoot(document.getElementById('root')!).render(
         <Route element={<PublicRoute/>}>
             <Route path='/login' element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
+            <Route path='/forgot-password' element={<ForgotPassword/>}/>
+            <Route path='/code-reset-password' element={<CodeResetPassword/>} />
+            <Route path='/change-password' element={<ChangePassword/>} />
         </Route>
         <Route  element={<ProtectedRoute/>}>
 
