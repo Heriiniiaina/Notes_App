@@ -2,7 +2,7 @@ import { ErrorHandler } from "../middlewares/errorHandler.js"
 import { EmailSchema, passwordSchema, registerSchema } from "../middlewares/validator.js"
 import { User } from "../models/user.model.js"
 import { comparePassword, hashPassword } from "../utils/bcrypt.js"
-import { hashCode, hashCode } from "../utils/hashCode.js"
+import { hashCode} from "../utils/hashCode.js"
 import { transport } from "../utils/sendEmail.js"
 import { generateToken } from "../utils/token.js"
 
