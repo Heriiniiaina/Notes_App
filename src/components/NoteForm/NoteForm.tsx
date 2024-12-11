@@ -18,7 +18,8 @@ interface FormProps {
     onClickTrash?:React.MouseEventHandler<SVGElement>,
     onSubmit?: (formValue: { _id?: string; title: string; content: string; created_at?: string }) => void
     isEditable:boolean,
-    note?:Note
+    note?:Note,
+    isLoading:boolean
 }
 
 const Validator ={
@@ -31,7 +32,7 @@ const Validator ={
     }
 }
 
-const NoteForm = ({isEditable=true, title,onClickEdit,onClickTrash,onSubmit,note }: FormProps) => {
+const NoteForm = ({isEditable=true, title,onClickEdit,onClickTrash,onSubmit,note,isLoading }: FormProps) => {
     const [formValue,setFormValue] = useState({title:note? note.title : "",content:note? note.content : ""})
     const [formError,setFormError] = useState({title: note?.title ? undefined : "",content: note?.content ? undefined : ""})
     const [hasFormError,setHasFormError] = useState(true)
@@ -76,7 +77,7 @@ const NoteForm = ({isEditable=true, title,onClickEdit,onClickTrash,onSubmit,note
     )
     const submitButton = (
         <div className='text-right'>
-            <ButtonPrimary isDisable={hasFormError} onClick={()=>onSubmit && onSubmit(formValue)}>Submit</ButtonPrimary>
+            <ButtonPrimary isLoading={isLoading} isDisable={hasFormError} onClick={()=>onSubmit && onSubmit(formValue)}>Submit</ButtonPrimary>
         </div>
     )
     return (
