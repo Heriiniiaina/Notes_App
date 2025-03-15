@@ -6,6 +6,7 @@ import { setNoteList } from "./store/note/note-slice"
 import { useEffect } from "react"
 import { RootState } from "./store"
 
+/*ok*/
 function App() {
   const disptach = useDispatch()
   const userId = useSelector((store:RootState)=>store.auth.user?.userId)
