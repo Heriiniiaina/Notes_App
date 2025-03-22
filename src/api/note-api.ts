@@ -34,8 +34,4 @@ export class NoteApi{
     static async update(note:Notes,userId:string){
         return (await axios.patch(`${BASE_URL}/updateNote/${note._id}`,{title:note.title,content:note.content,userId})).data.note
     }
-    static test()
-    {
-        return
-    }
 }
